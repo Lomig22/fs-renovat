@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FS Rénovation — Nettoyage & Travaux · Belgique · 7j/7</title>
+<meta name="description" content="FS Rénovation — Nettoyage intérieur, extérieur, fin de chantier, bureaux et locaux commerciaux. Intervention rapide 7j/7 en Belgique. Devis gratuit sous 24h.">
+
+<!-- ===== GOOGLE FONTS ===== -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Mono:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+
+<style>
+/* ===== TOKENS / VARIABLES ===== */
+:root{
+  --clean:#FFFFFF;       /* fond principal — blanc immaculé */
+  --mint:#00C896;        /* accent signature — vert menthe électrique */
+  --dark:#111111;        /* texte principal — noir profond */
+  --frost:#F4F9F7;       /* sections alternées — blanc teinté menthe */
+  --steel:#6B7B8D;       /* texte secondaire — gris bleu neutre */
+  --shine:#00E8AF;       /* hover states — menthe brillant */
+  --mint-text:#009970;   /* menthe foncé pour textes (WCAG AA ~4.5:1) */
+
+  --topbar-h:38px;
+  --header-h:70px;
+
+  --shadow-soft:0 2px 24px rgba(0,200,150,0.08);
+  --shadow-card:0 6px 32px rgba(0,200,150,0.14);
+  --shadow-head:0 2px 20px rgba(0,0,0,0.06);
+
+  --ease:cubic-bezier(0.25,0.46,0.45,0.94);
+}
+
+/* ===== RESET / BASE ===== */
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:calc(var(--topbar-h) + var(--header-h) + 12px)}
+body{
+  font-family:'DM Mono',monospace;
+  font-weight:400;
+  color:var(--dark);
+  background:var(--clean);
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+h1,h2,h3,h4,.font-display{font-family:'Plus Jakarta Sans',sans-serif}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+ul{list-style:none}
+button{font-family:inherit;cursor:pointer;border:none;background:none}
+
+/* ===== CHEVRONS SVG MOTIF (sections frost) ===== */
+.has-chevrons{position:relative}
+.has-chevrons::before{
+  content:"";
+  position:absolute;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'%3E%3Cpath d='M0,10 L10,0 L20,10' fill='none' stroke='%2300C896' stroke-width='1' opacity='0.04'/%3E%3C/svg%3E");
+  background-repeat:repeat;
+  background-size:20px 20px;
+  pointer-events:none;
+  z-index:0;
+}
+.has-chevrons > *{position:relative;z-index:1}
+
+/* hero chevrons plus subtils (0.03) sur fond blanc */
+.hero-chevrons::before{
+  content:"";
+  position:absolute;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'%3E%3Cpath d='M0,10 L10,0 L20,10' fill='none' stroke='%2300C896' stroke-width='1' opacity='0.03'/%3E%3C/svg%3E");
+  background-repeat:repeat;
+  background-size:20px 20px;
+  pointer-events:none;
+  z-index:0;
+}
+
+/* ===== LAYOUT HELPERS ===== */
+.container{width:100%;max-width:1200px;margin:0 auto;padding:0 24px}
+section{padding:88px 0;position:relative}
+.eyebrow{
+  font-family:'Plus Jakarta Sans',sans-serif;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:0.14em;
+  color:var(--mint-text);
+  font-size:13px;
+  margin-bottom:16px;
+  display:inline-block;
+}
+.section-title{
+  font-weight:800;
+  font-size:clamp(28px,4.2vw,44px);
+  line-height:1.12;
+  color:var(--dark);
+  margin-bottom:18px;
+  letter-spacing:-0.01em;
+}
+.section-head{max-width:720px;margin-bottom:52px}
+
+/* ===== BUTTONS ===== */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  font-family:'Plus Jakarta Sans',sans-serif;
+  font-weight:700;
+  font-size:15px;
+  padding:13px 22px;
+  border-radius:6px;
+  transition:background .2s var(--ease),transform .2s var(--ease),box-shadow .2s var(--ease),color .2s var(--ease);
+  white-space:nowrap;
+}
+.btn-mint{background:var(--mint);color:var(--clean)}
+.btn-mint:hover{background:var(--shine);transform:translateY(-2px);box-shadow:var(--shadow-soft)}
+.btn-dark{background:var(--dark);color:var(--clean)}
+.btn-dark:hover{transform:translateY(-2px);box-shadow:0 6px 22px rgba(0,0,0,0.18)}
+.btn-outline{background:transparent;border:1.5px solid var(--mint);color:var(--mint-text)}
+.btn-outline:hover{background:var(--mint);color:var(--clean);transform:translateY(-2px)}
+.btn-ghost{background:transparent;color:var(--steel)}
+.btn-ghost:hover{color:var(--mint-text);text-decoration:underline}
+.btn-full{width:100%}
+
+/* ===== 0. BANDEAU DISPONIBILITÉ ===== */
+.topbar{
+  position:fixed;top:0;left:0;right:0;z-index:1000;
+  height:var(--topbar-h);
+  background:var(--mint);
+  display:flex;align-items:center;justify-content:center;
+}
+.topbar a{
+  font-family:'Plus Jakarta Sans',sans-serif;
+  font-weight:600;
+  color:var(--clean);
+  font-size:13px;
+  text-align:center;
+  padding:0 16px;
+  letter-spacing:0.01em;
+}
+.topbar a:hover{text-decoration:underline}
+
+/* ===== 1. HEADER FIXE ===== */
+.header{
+  position:fixed;top:var(--topbar-h);left:0;right:0;z-index:900;
+  height:var(--header-h);
+  background:var(--clean);
+  border-bottom:1px solid rgba(0,200,150,0.15);
+  transition:box-shadow .3s var(--ease);
+}
+.header.scrolled{box-shadow:var(--shadow-head)}
+.header-inner{
+  height:100%;
+  display:flex;align-items:center;justify-content:space-between;gap:24px;
+}
+.logo{font-family:'Plus Jakarta Sans',sans-serif;font-size:21px;text-transform:uppercase;display:flex;gap:8px;align-items:baseline}
+.logo .fs{font-weight:800;color:var(--mint-text)}
+.logo .reno{font-weight:600;color:var(--dark);letter-spacing:0.12em;font-size:18px}
+
+.nav{display:flex;align-items:center;gap:28px}
+.nav a{
+  font-family:'Plus Jakarta Sans',sans-serif;
+  font-weight:500;
+  color:var(--steel);
+  font-size:15px;
+  text-transform:lowercase;
+  transition:color .2s var(--ease);
+}
+.nav a:hover,.nav a.active{color:var(--mint-text)}
+
+.header-cta{display:flex;align-items:center;gap:12px}
+.header-cta .btn{font-size:14px;padding:10px 16px}
+
+.hamburger{display:none;flex-direction:column;gap:5px;padding:8px;z-index:950}
+.hamburger span{width:26px;height:2px;background:var(--dark);border-radius:2px;transition:transform .3s var(--ease),opacity .3s var(--ease)}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.hamburger.open span:nth-child(2){opacity:0}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+/* ===== MOBILE OVERLAY ===== */
+.mobile-overlay{
+  position:fixed;inset:0;z-index:940;
+  background:var(--clean);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;
+  opacity:0;visibility:hidden;transform:translateY(-10px);
+  transition:opacity .35s var(--ease),transform .35s var(--ease),visibility .35s;
+}
+.mobile-overlay.open{opacity:1;visibility:visible;transform:translateY(0)}
+.mobile-overlay a{
+  font-family:'Plus Jakarta Sans',sans-serif;
+  font-weight:700;
+  font-size:26px;
+  color:var(--dark);
+  text-transform:lowercase;
+  padding:12px;
+  opacity:0;transform:translateY(14px);
+  transition:color .2s var(--ease);
+}
+.mobile-overlay.open a{animation:menuItem .4s var(--ease) forwards}
+.mobile-overlay a:hover{color:var(--mint-text)}
+.mobile-overlay .btn{font-size:16px;margin-top:14px;opacity:0;transform:translateY(14px)}
+.mobile-overlay.open .btn{animation:menuItem .4s var(--ease) forwards;animation-delay:.3s}
+@keyframes menuItem{to{opacity:1;transform:translateY(0)}}
+
+/* ===== 2. HERO ===== */
+.hero{
+  padding-top:calc(var(--topbar-h) + var(--header-h) + 70px);
+  padding-bottom:90px;
+  background:var(--clean);
+  overflow:hidden;
+}
+.hero-inner{max-width:880px}
+.hero h1{
+  font-weight:800;
+  letter-spacing:-0.03em;
+  line-height:0.95;
+  margin:14px 0 26px;
+}
+.hero h1 .l1{display:block;color:var(--dark);font-size:clamp(58px,11vw,118px)}
+.hero h1 .l2{display:block;color:var(--mint);font-size:clamp(66px,13vw,140px)}
+.hero-sub{
+  font-size:clamp(15px,2vw,18px);
+  color:var(--steel);
+  max-width:620px;
+  margin-bottom:34px;
+  line-height:1.7;
+}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:38px}
+.hero-badges{display:flex;flex-wrap:wrap;gap:12px}
+.badge-reassure{
+  background:var(--frost);
+  border-radius:6px;
+  padding:10px 16px;
+  font-family:'Plus Jakarta Sans',sans-serif;
+  font-weight:600;
+  font-size:14px;
+  color:var(--dark);
+  display:inline-flex;align-items:center;gap:8px;
+}
+
+/* ===== 3. SERVICES ===== */
+.services{background:var(--frost)}
+.services-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:24px;
+}
+.service-card{
+  background:var(--clean);
+  border-radius:10px;
+  padding:30px 26px;
+  box-shadow:var(--shadow-soft);
+  border-top:2px solid transparent;
+  transition:box-shadow .3s var(--ease),transform .3s var(--ease),border-color .3s var(--ease);
+}
+.service-card:hover{
+  box-shadow:var(--shadow-card);
+  transform:translateY(-3px);
+  border-top-color:var(--mint);
+}
+.service-icon{
+  width:40px;height:40px;
+  color:var(--mint);
+  margin-bottom:18px;
+}
+.service-icon svg{width:100%;height:100%;display:block}
+.service-card h3{font-weight:700;font-size:20px;color:var(--dark);margin-bottom:12px}
+.service-card p{font-size:13.5px;color:var(--steel);line-height:1.65;margin-bottom:16px}
+.tag-mint{
+  display:inline-block;
+  font-family:'Plus Jakarta Sans',sans-serif;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:0.08em;
+  font-size:11px;
+  color:var(--mint-text);
+  background:rgba(0,200,150,0.10);
+  padding:5px 11px;
+  border-radius:20px;
+}
+
+/* ===== 4. SECTEURS ===== */
+.sectors{background:var(--clean)}
+.sectors-grid{
+  display:grid;
+  grid-template-columns:1fr 1px 1fr;
+  gap:0;
+  align-items:stretch;
+}
+.sector-divider{background:rgba(0,200,150,0.20)}
+.sector-col{padding:38px 34px;border-radius:10px}
+.sector-col.particuliers{background:var(--frost);border-top:3px solid var(--mint);margin-right:24px}
+.sector-col.pros{background:var(--dark);margin-left:24px}
+.sector-icon{width:48px;height:48px;color:var(--mint);margin-bottom:18px}
+.sector-icon svg{width:100%;height:100%}
+.sector-col h3{font-weight:800;font-size:26px;margin-bottom:20px}
+.sector-col.particuliers h3{color:var(--dark)}
+.sector-col.pros h3{color:var(--mint)}
+.sector-list li{
+  font-size:14px;line-height:1.5;
+  padding:11px 0 11px 26px;
+  position:relative;
+  border-bottom:1px solid rgba(107,123,141,0.12);
+}
+.sector-col.particuliers .sector-list li{color:var(--steel)}
+.sector-col.pros .sector-list li{color:rgba(255,255,255,0.75);border-bottom-color:rgba(255,255,255,0.08)}
+.sector-list li::before{
+  content:"→";position:absolute;left:0;color:var(--mint-text);font-weight:700;
+}
+.sector-col.pros .sector-list li::before{color:var(--mint)}
+.badge-contract{
+  display:inline-block;margin-top:22px;
+  font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:13px;
+  color:var(--dark);background:var(--mint);
+  padding:9px 18px;border-radius:20px;
+}
+
+/* ===== 5. PROCESSUS ===== */
+.process{background:var(--frost)}
+.process-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:0;
+  position:relative;
+}
+.process-step{padding:0 26px;text-align:center;position:relative}
+.process-step:not(:last-child)::after{
+  content:"→";
+  position:absolute;right:-10px;top:34px;
+  color:var(--mint);font-size:24px;font-weight:700;
+  opacity:0.5;
+}
+.process-num{
+  width:68px;height:68px;border-radius:50%;
+  background:var(--clean);
+  border:2px solid var(--mint);
+  color:var(--mint-text);
+  font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:26px;
+  display:flex;align-items:center;justify-content:center;
+  margin:0 auto 22px;
+  box-shadow:var(--shadow-soft);
+}
+.process-step h3{font-weight:700;font-size:19px;color:var(--dark);margin-bottom:12px}
+.process-step p{font-size:13.5px;color:var(--steel);line-height:1.65}
+
+/* ===== 6. RÉALISATIONS ===== */
+.gallery{background:var(--clean)}
+.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-bottom:42px}
+.ba-card{
+  border-radius:10px;
+  overflow:hidden;
+  box-shadow:var(--shadow-soft);
+  transition:box-shadow .3s var(--ease),transform .3s var(--ease);
+}
+.ba-card:hover{box-shadow:var(--shadow-card);transform:translateY(-3px)}
+.ba-visual{display:grid;grid-template-columns:1fr 1px 1fr;height:180px}
+.ba-before{background:rgba(107,123,141,0.20);display:flex;align-items:flex-end;padding:14px}
+.ba-after{background:rgba(0,200,150,0.15);display:flex;align-items:flex-end;justify-content:flex-end;padding:14px;text-align:right}
+.ba-sep{background:var(--mint)}
+.ba-label{font-size:11px;text-transform:uppercase;letter-spacing:0.05em}
+.ba-before .ba-label{color:var(--steel)}
+.ba-after .ba-label{color:var(--mint-text)}
+.ba-caption{padding:16px 18px;background:var(--clean);font-size:13.5px;color:var(--dark);font-weight:400}
+.gallery-cta{text-align:center}
+
+/* ===== 7. TÉMOIGNAGES ===== */
+.testimonials{background:var(--frost)}
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.testi-card{
+  background:var(--clean);
+  border-radius:10px;
+  border-left:3px solid var(--mint);
+  padding:28px 26px;
+  box-shadow:var(--shadow-soft);
+}
+.stars{color:var(--mint);font-size:15px;margin-bottom:14px;letter-spacing:2px}
+.testi-text{font-style:italic;color:rgba(17,17,17,0.85);font-size:14px;line-height:1.65;margin-bottom:18px}
+.testi-author{font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;color:var(--steel);line-height:1.4}
+.testi-author strong{color:var(--dark);font-weight:700;display:block}
+
+/* ===== 8. CONTACT ===== */
+.contact{background:var(--dark)}
+.contact .eyebrow{color:var(--mint)}
+.contact .section-title{color:var(--clean)}
+.contact-sub{font-size:16px;color:rgba(255,255,255,0.60);margin-bottom:48px}
+.contact-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:36px;align-items:start}
+
+.contact-channels{
+  background:rgba(255,255,255,0.05);
+  border-radius:10px;
+  border:1px solid rgba(0,200,150,0.20);
+  padding:28px;
+}
+.contact-phone-cta{
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  background:var(--mint);color:var(--dark);
+  font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:21px;
+  padding:18px;border-radius:6px;width:100%;
+  transition:background .2s var(--ease),transform .2s var(--ease);
+}
+.contact-phone-cta:hover{background:var(--shine);transform:translateY(-2px)}
+.contact-or{text-align:center;color:var(--steel);font-size:13px;margin:18px 0;position:relative}
+.contact-insta-cta{
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  background:transparent;border:1.5px solid var(--mint);color:var(--mint);
+  font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:15px;
+  padding:14px;border-radius:6px;width:100%;
+  transition:background .2s var(--ease),color .2s var(--ease);
+}
+.contact-insta-cta:hover{background:var(--mint);color:var(--dark)}
+.contact-infos{margin-top:26px;padding-top:24px;border-top:1px solid rgba(255,255,255,0.10)}
+.contact-infos li{color:rgba(255,255,255,0.75);font-size:14px;padding:7px 0;display:flex;gap:10px;align-items:center}
+
+/* form */
+.contact-form{display:flex;flex-direction:column;gap:16px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.field{display:flex;flex-direction:column;gap:7px}
+.field label{
+  font-family:'Plus Jakarta Sans',sans-serif;font-weight:500;font-size:13px;
+  color:rgba(255,255,255,0.70);
+}
+.field input,.field select,.field textarea{
+  font-family:'DM Mono',monospace;font-size:14px;
+  background:transparent;
+  border:1px solid rgba(255,255,255,0.15);
+  border-radius:6px;
+  padding:12px 16px;
+  color:var(--clean);
+  transition:border-color .25s var(--ease),box-shadow .25s var(--ease);
+  width:100%;
+}
+.field input::placeholder,.field textarea::placeholder{color:rgba(255,255,255,0.35)}
+.field select{appearance:none;cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2300C896' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center}
+.field select option{background:var(--dark);color:var(--clean)}
+.field input:focus,.field select:focus,.field textarea:focus{
+  outline:none;border-color:var(--mint);
+  box-shadow:0 0 0 3px rgba(0,200,150,0.20);
+}
+.field textarea{resize:vertical;min-height:96px}
+
+/* ===== 9. FOOTER ===== */
+.footer{background:var(--dark);border-top:2px solid var(--mint);padding:54px 0 30px;text-align:center}
+.footer-logo{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:24px;text-transform:uppercase;margin-bottom:14px;letter-spacing:0.04em}
+.footer-logo .fs{color:var(--mint)}
+.footer-logo .reno{color:var(--clean)}
+.footer-tag{color:var(--steel);font-size:13.5px;margin-bottom:18px}
+.footer-phone{color:var(--mint);font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:18px;display:inline-block;margin-bottom:18px}
+.footer-phone:hover{color:var(--shine)}
+.footer-insta{display:inline-flex;width:42px;height:42px;align-items:center;justify-content:center;border:1px solid rgba(0,200,150,0.3);border-radius:50%;color:var(--mint);margin-bottom:24px;transition:background .2s var(--ease),color .2s var(--ease)}
+.footer-insta:hover{background:var(--mint);color:var(--dark)}
+.footer-sep{width:100%;max-width:280px;height:1px;background:rgba(0,200,150,0.20);margin:0 auto 22px}
+.footer-copy{color:rgba(255,255,255,0.55);font-size:13px;margin-bottom:8px}
+.footer-credit{color:var(--steel);font-size:12px}
+.footer-credit a{color:var(--mint-text)}
+.footer-credit a:hover{color:var(--mint)}
+
+/* ===== SCROLL REVEAL ===== */
+.reveal{opacity:0;transform:translateY(14px);transition:opacity .5s var(--ease),transform .5s var(--ease)}
+.reveal.revealed{opacity:1;transform:translateY(0)}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width:1024px){
+  .services-grid,.testi-grid,.gallery-grid{grid-template-columns:repeat(2,1fr)}
+  .nav{display:none}
+}
+@media (max-width:900px){
+  .contact-grid{grid-template-columns:1fr;gap:28px}
+}
+@media (max-width:768px){
+  :root{--header-h:64px}
+  section{padding:64px 0}
+  .header-cta .btn-outline{display:none}
+  .hamburger{display:flex}
+  .nav{display:none}
+  .sectors-grid{grid-template-columns:1fr;gap:24px}
+  .sector-divider{display:none}
+  .sector-col.particuliers{margin-right:0}
+  .sector-col.pros{margin-left:0}
+  .process-grid{grid-template-columns:1fr;gap:42px}
+  .process-step:not(:last-child)::after{content:"↓";right:auto;left:50%;top:auto;bottom:-32px;transform:translateX(-50%)}
+}
+@media (max-width:560px){
+  .services-grid,.testi-grid,.gallery-grid{grid-template-columns:1fr}
+  .form-row{grid-template-columns:1fr}
+  .hero-ctas .btn{width:100%}
+  .header-cta .btn span.full-num{display:none}
+  .topbar a{font-size:11px}
+}
+
+/* ===== REDUCED MOTION ===== */
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *{transition:none !important;animation:none !important}
+  .reveal{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+
+<!-- ===== 0. BANDEAU DISPONIBILITÉ ===== -->
+<div class="topbar">
+  <a href="tel:+32498662427" aria-label="Disponible 7 jours sur 7, intervention rapide en Belgique. Appeler le +32 498 66 24 27">
+    ✓ Disponible 7j/7 · Intervention rapide · Belgique · +32 498 66 24 27
+  </a>
+</div>
+
+<!-- ===== 1. HEADER ===== -->
+<header class="header" id="header">
+  <div class="container header-inner">
+    <a href="#hero" class="logo" aria-label="FS Rénovation — accueil">
+      <span class="fs">FS</span><span class="reno">Rénovation</span>
+    </a>
+
+    <nav class="nav" aria-label="Navigation principale">
+      <a href="#services">services</a>
+      <a href="#sectors">secteurs</a>
+      <a href="#gallery">réalisations</a>
+      <a href="#contact">contact</a>
+    </nav>
+
+    <div class="header-cta">
+      <a href="tel:+32498662427" class="btn btn-mint" aria-label="Appeler le +32 498 66 24 27">📞 <span class="full-num">+32 498 66 24 27</span></a>
+      <a href="#contact" class="btn btn-outline">Devis gratuit</a>
+    </div>
+
+    <button class="hamburger" id="hamburger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobileMenu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- ===== MOBILE OVERLAY ===== -->
+<div class="mobile-overlay" id="mobileMenu" aria-hidden="true">
+  <a href="#services">services</a>
+  <a href="#sectors">secteurs</a>
+  <a href="#process">processus</a>
+  <a href="#gallery">réalisations</a>
+  <a href="#contact">contact</a>
+  <a href="tel:+32498662427" class="btn btn-mint">📞 +32 498 66 24 27</a>
+</div>
+
+<!-- ===== 2. HERO ===== -->
+<section class="hero hero-chevrons" id="hero">
+  <div class="container hero-inner">
+    <span class="eyebrow reveal">Nettoyage & Travaux · Belgique · 7j/7</span>
+    <h1 class="reveal">
+      <span class="l1">Propre.</span>
+      <span class="l2">Toujours.</span>
+    </h1>
+    <p class="hero-sub reveal">
+      Nettoyage intérieur, extérieur, fin de chantier. Bureaux et locaux commerciaux.
+      Disponible 7 jours sur 7 en Belgique.
+    </p>
+    <div class="hero-ctas reveal">
+      <a href="tel:+32498662427" class="btn btn-mint" aria-label="Appeler maintenant">📞 Appeler maintenant</a>
+      <a href="#contact" class="btn btn-dark">💬 Envoyer un message</a>
+      <a href="#services" class="btn btn-ghost">Voir les services ↓</a>
+    </div>
+    <div class="hero-badges reveal">
+      <span class="badge-reassure">⚡ Intervention 7j/7</span>
+      <span class="badge-reassure">✓ Devis gratuit</span>
+      <span class="badge-reassure">🏢 Particuliers & professionnels</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 3. SERVICES ===== -->
+<section class="services has-chevrons" id="services">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Nos services</span>
+      <h2 class="section-title">Un service, une promesse : le résultat.</h2>
+    </div>
+    <div class="services-grid">
+
+      <article class="service-card reveal">
+        <div class="service-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 9.5V21h14V9.5"/><path d="M9 21v-6h6v6"/></svg>
+        </div>
+        <h3>Nettoyage intérieur</h3>
+        <p>Domiciles, appartements, maisons. Nettoyage complet, remise en état, entretien régulier. Chaque surface traitée avec les produits adaptés.</p>
+        <span class="tag-mint">Sur devis</span>
+      </article>
+
+      <article class="service-card reveal">
+        <div class="service-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="1"/><path d="M9 3v18M15 3v18M3 9h18M3 15h18"/></svg>
+        </div>
+        <h3>Bureaux & locaux commerciaux</h3>
+        <p>Entretien régulier ou intervention ponctuelle. Bureaux, salles de réunion, sanitaires, espaces communs. Résultat professionnel garanti avant ouverture.</p>
+        <span class="tag-mint">Forfait possible</span>
+      </article>
+
+      <article class="service-card reveal">
+        <div class="service-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21V9l7-5 7 5v12"/><path d="M9 21v-6h6v6"/><path d="M12 4v3"/></svg>
+        </div>
+        <h3>Fin de chantier</h3>
+        <p>Nettoyage après travaux — poussière, résidus, traces. Livraison propre et prête à l'emploi. Intervention rapide sur tout type de chantier.</p>
+        <span class="tag-mint">Sur devis</span>
+      </article>
+
+      <article class="service-card reveal">
+        <div class="service-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 13l9-9 9 9"/><path d="M5 11v9h14v-9"/><path d="M2 20h20"/></svg>
+        </div>
+        <h3>Nettoyage extérieur</h3>
+        <p>Façades, terrasses, allées, parkings, clôtures. Nettoyage haute pression, démoussage, entretien. Résultat visible dès la première intervention.</p>
+        <span class="tag-mint">Sur devis</span>
+      </article>
+
+      <article class="service-card reveal">
+        <div class="service-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0-5 5L3 18l3 3 6.7-6.7a4 4 0 0 0 5-5l-2.5 2.5-2.5-.5-.5-2.5 2.5-2.5z"/></svg>
+        </div>
+        <h3>Petits travaux</h3>
+        <p>Remise en état, finitions, réparations légères. Petits travaux de rénovation pour particuliers et professionnels, sans mauvaise surprise.</p>
+        <span class="tag-mint">Sur devis</span>
+      </article>
+
+      <article class="service-card reveal">
+        <div class="service-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z"/></svg>
+        </div>
+        <h3>Intervention rapide</h3>
+        <p>Disponible 7 jours sur 7, y compris le week-end. Devis gratuit sous 24h, intervention confirmée rapidement. Un seul interlocuteur du début à la fin.</p>
+        <span class="tag-mint">7j/7</span>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== 4. SECTEURS ===== -->
+<section class="sectors" id="sectors">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Nous intervenons pour</span>
+      <h2 class="section-title">Particuliers & professionnels.</h2>
+    </div>
+    <div class="sectors-grid">
+
+      <div class="sector-col particuliers reveal">
+        <div class="sector-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 9.5V21h14V9.5"/><path d="M9 21v-6h6v6"/></svg>
+        </div>
+        <h3>Particuliers</h3>
+        <ul class="sector-list">
+          <li>Remise en état avant emménagement</li>
+          <li>Nettoyage après travaux ou rénovation</li>
+          <li>Grand nettoyage saisonnier</li>
+          <li>Entretien régulier domicile</li>
+          <li>Nettoyage terrasse et extérieur</li>
+        </ul>
+      </div>
+
+      <div class="sector-divider" aria-hidden="true"></div>
+
+      <div class="sector-col pros reveal">
+        <div class="sector-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="1"/><path d="M9 22v-4h6v4"/><path d="M8 6h2M14 6h2M8 10h2M14 10h2M8 14h2M14 14h2"/></svg>
+        </div>
+        <h3>Professionnels</h3>
+        <ul class="sector-list">
+          <li>Bureaux et espaces de travail</li>
+          <li>Locaux commerciaux et boutiques</li>
+          <li>Restaurants et espaces de restauration</li>
+          <li>Entrepôts et espaces industriels</li>
+          <li>Fin de chantier immobilier</li>
+        </ul>
+        <span class="badge-contract">Contrat d'entretien possible</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== 5. PROCESSUS ===== -->
+<section class="process has-chevrons" id="process">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Comment ça marche</span>
+      <h2 class="section-title">3 étapes, c'est tout.</h2>
+    </div>
+    <div class="process-grid">
+      <div class="process-step reveal">
+        <div class="process-num">1</div>
+        <h3>Vous contactez</h3>
+        <p>DM Instagram, appel ou message WhatsApp. On répond vite, on pose les bonnes questions.</p>
+      </div>
+      <div class="process-step reveal">
+        <div class="process-num">2</div>
+        <h3>Devis gratuit</h3>
+        <p>On se déplace ou on chiffre à distance selon le projet. Prix clair, sans surprise, sous 24h.</p>
+      </div>
+      <div class="process-step reveal">
+        <div class="process-num">3</div>
+        <h3>On intervient</h3>
+        <p>Équipe ponctuelle, matériel professionnel, résultat garanti. Disponible 7j/7, même le week-end.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 6. RÉALISATIONS ===== -->
+<section class="gallery" id="gallery">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Réalisations</span>
+      <h2 class="section-title">Avant. Après. La différence.</h2>
+    </div>
+    <div class="gallery-grid">
+
+      <article class="ba-card reveal">
+        <div class="ba-visual">
+          <div class="ba-before"><span class="ba-label">Avant intervention</span></div>
+          <div class="ba-sep"></div>
+          <div class="ba-after"><span class="ba-label">Après intervention</span></div>
+        </div>
+        <div class="ba-caption">Nettoyage fin de chantier — appartement Bruxelles</div>
+      </article>
+
+      <article class="ba-card reveal">
+        <div class="ba-visual">
+          <div class="ba-before"><span class="ba-label">Avant intervention</span></div>
+          <div class="ba-sep"></div>
+          <div class="ba-after"><span class="ba-label">Après intervention</span></div>
+        </div>
+        <div class="ba-caption">Remise en état bureaux — Liège</div>
+      </article>
+
+      <article class="ba-card reveal">
+        <div class="ba-visual">
+          <div class="ba-before"><span class="ba-label">Avant intervention</span></div>
+          <div class="ba-sep"></div>
+          <div class="ba-after"><span class="ba-label">Après intervention</span></div>
+        </div>
+        <div class="ba-caption">Nettoyage terrasse extérieure — Namur</div>
+      </article>
+
+    </div>
+    <div class="gallery-cta reveal">
+      <a href="https://www.instagram.com/fs.renovat" target="_blank" rel="noopener" class="btn btn-mint" aria-label="Voir nos réalisations sur Instagram">📸 Voir nos réalisations sur Instagram</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 7. TÉMOIGNAGES ===== -->
+<section class="testimonials has-chevrons" id="testimonials">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Ils nous font confiance</span>
+      <h2 class="section-title">Ce qu'ils en disent.</h2>
+    </div>
+    <div class="testi-grid">
+
+      <article class="testi-card reveal">
+        <div class="stars" aria-label="5 étoiles sur 5">★★★★★</div>
+        <p class="testi-text">"Intervention le lendemain de mon appel, un samedi. Appartement impeccable après les travaux. Sérieux, efficace, prix honnête. Je recommande sans hésiter."</p>
+        <div class="testi-author"><strong>Sophie V.</strong>Bruxelles · Nettoyage fin de chantier</div>
+      </article>
+
+      <article class="testi-card reveal">
+        <div class="stars" aria-label="5 étoiles sur 5">★★★★★</div>
+        <p class="testi-text">"On fait appel à FS Rénovation chaque semaine pour nos bureaux à Liège. Toujours ponctuels, toujours propres. Un partenaire de confiance pour notre entreprise."</p>
+        <div class="testi-author"><strong>Marc D.</strong>Liège · Entretien bureaux hebdomadaire</div>
+      </article>
+
+      <article class="testi-card reveal">
+        <div class="stars" aria-label="5 étoiles sur 5">★★★★★</div>
+        <p class="testi-text">"Nettoyage de notre terrasse et façade avant la vente de la maison. Résultat bluffant. On aurait dû le faire bien avant !"</p>
+        <div class="testi-author"><strong>Isabelle & Thomas L.</strong>Namur · Nettoyage extérieur</div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== 8. CONTACT ===== -->
+<section class="contact" id="contact">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Contact</span>
+      <h2 class="section-title">Parlons de votre projet.</h2>
+      <p class="contact-sub">Devis gratuit · Réponse rapide · 7j/7</p>
+    </div>
+    <div class="contact-grid">
+
+      <!-- Canaux directs -->
+      <div class="contact-channels reveal">
+        <a href="tel:+32498662427" class="contact-phone-cta" aria-label="Appeler le +32 498 66 24 27">📞 +32 498 66 24 27</a>
+        <div class="contact-or">ou</div>
+        <a href="https://www.instagram.com/fs.renovat" target="_blank" rel="noopener" class="contact-insta-cta" aria-label="Nous contacter sur Instagram">📸 DM sur Instagram @fs.renovat</a>
+        <ul class="contact-infos">
+          <li>📍 Belgique — intervention rapide</li>
+          <li>🕐 Disponible lun–dim, 7j/7</li>
+          <li>✓ Devis gratuit sous 24h</li>
+        </ul>
+      </div>
+
+      <!-- Formulaire -->
+      <form class="contact-form reveal" action="#" method="post">
+        <div class="form-row">
+          <div class="field">
+            <label for="firstname">Prénom</label>
+            <input type="text" id="firstname" name="firstname" placeholder="Votre prénom" autocomplete="given-name">
+          </div>
+          <div class="field">
+            <label for="lastname">Nom</label>
+            <input type="text" id="lastname" name="lastname" placeholder="Votre nom" autocomplete="family-name">
+          </div>
+        </div>
+        <div class="field">
+          <label for="phone">Téléphone *</label>
+          <input type="tel" id="phone" name="phone" placeholder="+32 4XX XX XX XX" required autocomplete="tel">
+        </div>
+        <div class="field">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="vous@exemple.be" autocomplete="email">
+        </div>
+        <div class="field">
+          <label for="profile">Vous êtes</label>
+          <select id="profile" name="profile">
+            <option value="">Sélectionnez…</option>
+            <option>Particulier</option>
+            <option>Entreprise ou bureau</option>
+            <option>Gérant d'immeuble</option>
+            <option>Promoteur</option>
+            <option>Autre</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="service">Type de service</label>
+          <select id="service" name="service">
+            <option value="">Sélectionnez…</option>
+            <option>Nettoyage intérieur</option>
+            <option>Bureaux & locaux</option>
+            <option>Fin de chantier</option>
+            <option>Nettoyage extérieur</option>
+            <option>Petits travaux</option>
+            <option>Autre</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="zone">Adresse ou zone d'intervention</label>
+          <input type="text" id="zone" name="zone" placeholder="Ville, commune ou code postal">
+        </div>
+        <div class="field">
+          <label for="message">Message (optionnel)</label>
+          <textarea id="message" name="message" placeholder="Décrivez votre besoin en quelques mots…"></textarea>
+        </div>
+        <button type="submit" class="btn btn-mint btn-full" style="background:var(--mint);color:var(--dark);padding:15px">Envoyer ma demande</button>
+      </form>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== 9. FOOTER ===== -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-logo"><span class="fs">FS</span> <span class="reno">Rénovation</span></div>
+    <p class="footer-tag">Nettoyage & travaux · Belgique · 7j/7</p>
+    <a href="tel:+32498662427" class="footer-phone" aria-label="Appeler le +32 498 66 24 27">+32 498 66 24 27</a>
+    <div>
+      <a href="https://www.instagram.com/fs.renovat" target="_blank" rel="noopener" class="footer-insta" aria-label="Instagram @fs.renovat">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+      </a>
+    </div>
+    <div class="footer-sep"></div>
+    <p class="footer-copy">© 2026 FS Rénovation — Tous droits réservés · Belgique</p>
+    <p class="footer-credit">Site réalisé par <a href="https://paymentflow.fr" target="_blank" rel="noopener">Payment Flow</a></p>
+  </div>
+</footer>
+
+<script>
+'use strict';
+
+/* ===== HEADER SCROLL SHADOW ===== */
+function initHeaderScroll(){
+  const header=document.getElementById('header');
+  function onScroll(){
+    if(window.scrollY>60){header.classList.add('scrolled');}
+    else{header.classList.remove('scrolled');}
+  }
+  window.addEventListener('scroll',onScroll,{passive:true});
+  onScroll();
+}
+
+/* ===== MOBILE MENU ===== */
+function initMobileMenu(){
+  const burger=document.getElementById('hamburger');
+  const menu=document.getElementById('mobileMenu');
+  const links=menu.querySelectorAll('a');
+
+  function setStagger(){
+    links.forEach(function(link,i){
+      link.style.animationDelay=(0.06*i)+'s';
+    });
+  }
+  function toggle(){
+    const isOpen=menu.classList.toggle('open');
+    burger.classList.toggle('open',isOpen);
+    burger.setAttribute('aria-expanded',isOpen?'true':'false');
+    menu.setAttribute('aria-hidden',isOpen?'false':'true');
+    document.body.style.overflow=isOpen?'hidden':'';
+  }
+  function close(){
+    menu.classList.remove('open');
+    burger.classList.remove('open');
+    burger.setAttribute('aria-expanded','false');
+    menu.setAttribute('aria-hidden','true');
+    document.body.style.overflow='';
+  }
+  setStagger();
+  burger.addEventListener('click',toggle);
+  links.forEach(function(link){link.addEventListener('click',close);});
+}
+
+/* ===== SCROLL REVEAL ===== */
+function initReveal(){
+  const items=document.querySelectorAll('.reveal');
+  if(!('IntersectionObserver' in window)){
+    items.forEach(function(el){el.classList.add('revealed');});
+    return;
+  }
+  const observer=new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(entry.isIntersecting){
+        entry.target.classList.add('revealed');
+        observer.unobserve(entry.target);
+      }
+    });
+  },{threshold:0.12,rootMargin:'0px 0px -40px 0px'});
+
+  /* stagger cards inside grids */
+  document.querySelectorAll('.services-grid,.testi-grid,.gallery-grid,.process-grid').forEach(function(grid){
+    grid.querySelectorAll('.reveal').forEach(function(card,i){
+      card.style.transitionDelay=(0.05*i)+'s';
+    });
+  });
+
+  items.forEach(function(el){observer.observe(el);});
+}
+
+/* ===== SCROLLSPY ===== */
+function initScrollspy(){
+  const navLinks=document.querySelectorAll('.nav a');
+  const map={};
+  navLinks.forEach(function(link){
+    const id=link.getAttribute('href').slice(1);
+    const section=document.getElementById(id);
+    if(section){map[id]=link;}
+  });
+  const sections=Object.keys(map).map(function(id){return document.getElementById(id);});
+  if(!('IntersectionObserver' in window)){return;}
+
+  const observer=new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(entry.isIntersecting){
+        navLinks.forEach(function(l){l.classList.remove('active');});
+        const link=map[entry.target.id];
+        if(link){link.classList.add('active');}
+      }
+    });
+  },{threshold:0.4,rootMargin:'-30% 0px -50% 0px'});
+
+  sections.forEach(function(s){observer.observe(s);});
+}
+
+/* ===== INIT ===== */
+document.addEventListener('DOMContentLoaded',function(){
+  initHeaderScroll();
+  initMobileMenu();
+  initReveal();
+  initScrollspy();
+});
+</script>
+
+</body>
+</html>
